@@ -8,11 +8,7 @@
   with_items:
        - "iptables-persistent"
 
-- debconf: name='iptables autosave v4' question='iptables-persistent/autosave_v4' value='true' vtype='boolean'
-- debconf: name='iptables autosave v6' question='iptables-persistent/autosave_v6' value='true' vtype='boolean'
-
-
-- template: src=roles/server.firewall/templates/etc/iptables/rules dest=/etc/iptables/rules.{{item}} 
+- template: src=etc/iptables/rules.j2 dest=/etc/iptables/rules.{{item}}
   with_items:
     - "{{v4}}"
     - "{{v6}}"
